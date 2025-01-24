@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Post } from '../types/Post';
 
 const API_BASE = import.meta.env.BASE_URL;
 
@@ -8,6 +9,6 @@ export async function getAllPosts() {
 }
 
 export async function getPostById(id: string) {
-  const response = await axios.get(`${API_BASE}/posts/${id}`);
+  const response = await axios.get<Post>(`${API_BASE}/posts/${id}`);
   return response.data;
 }
