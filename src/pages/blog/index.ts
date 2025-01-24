@@ -1,1 +1,1 @@
-export { default } from './Blog.container';
+export { default } from './BlogList.container';
