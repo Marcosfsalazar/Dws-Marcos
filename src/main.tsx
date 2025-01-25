@@ -4,8 +4,8 @@ import App from './App.tsx';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'styled-components';
-import { defaultTheme } from './components/themes/default.ts';
-import { GlobalStyle } from './components/themes/global.ts';
+import { GlobalStyle } from './styles/themes/global.ts';
+import defaultTheme from './styles/themes/default.ts';
 
 const queryClient = new QueryClient();
 

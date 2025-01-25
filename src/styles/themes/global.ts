@@ -15,11 +15,10 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: ${({ theme }) => theme.typography.fontFamily};
+    font-weight:${({ theme }) => theme.typography.fontWeights.regular};
     background-color: ${({ theme }) => theme.colors.neutral.lightest};
     color: ${({ theme }) => theme.colors.primary.dark};
     min-height: 100vh;
     margin: 0 auto;
-   padding: 2rem;
-   text-align: center;
   }
 `;
