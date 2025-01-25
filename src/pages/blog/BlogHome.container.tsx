@@ -1,5 +1,5 @@
 import { usePosts } from '../../hooks/usePosts';
-import BlogView from './BlogList.view';
+import BlogView from './BlogHome.view';
 
 const BlogContainer = () => {
   const { data: posts, isLoading, error } = usePosts();
