@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './styles/themes/global.ts';
 import defaultTheme from './styles/themes/default.ts';
+import { FilterProvider } from './context/FilterContext.tsx';
 
 const queryClient = new QueryClient();
 
@@ -15,7 +16,9 @@ createRoot(document.getElementById('root')!).render(
       <BrowserRouter>
         <ThemeProvider theme={defaultTheme}>
           <GlobalStyle />
-          <App />
+          <FilterProvider>
+            <App />
+          </FilterProvider>
         </ThemeProvider>
       </BrowserRouter>
     </QueryClientProvider>
