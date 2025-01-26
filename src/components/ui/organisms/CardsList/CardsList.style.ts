@@ -3,10 +3,12 @@ import styled from 'styled-components';
 export const ListGrid = styled.ul`
   display: grid;
   justify-content: center;
+  align-content: start;
   gap: 16px;
   margin: 16px;
   padding: 0;
   list-style: none;
+  height: 100vh;
 
   @media (min-width: 680px) {
     grid-template-columns: repeat(2, 1fr);
