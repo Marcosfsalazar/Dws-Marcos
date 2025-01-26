@@ -19,17 +19,12 @@ import {
   DesktopPanel,
   MobilePanel,
 } from '../../../../styles/themes/screenSize';
+import {
+  ClearFuncParams,
+  FilterComponentProps,
+} from '../../../../types/FilterComponent';
 
-interface FilterPanelProps {
-  onApply: (filters: { categories: string[]; authors: string[] }) => void;
-}
-
-interface ClearFuncParams {
-  category?: boolean;
-  author?: boolean;
-}
-
-const FilterPanel = ({ onApply }: FilterPanelProps) => {
+const FilterPanel = ({ onApply }: FilterComponentProps) => {
   const { data: categories, isLoading: catLoading } = useCategories();
   const { data: authors, isLoading: authLoading } = useAuthors();
   const {

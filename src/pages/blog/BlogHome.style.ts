@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Container = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
@@ -12,5 +17,6 @@ export const Wrapper = styled.div`
 
   @media (min-width: 1024px) {
     grid-template-columns: 1fr 8fr;
+    grid-template-rows: 2fr 10fr;
   }
 `;
