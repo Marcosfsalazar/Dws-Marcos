@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { usePost } from '../../hooks/usePost';
 import BlogDetailView from './BlogDetail.view';
+import Loader from '../../components/ui/atoms/Loader/Loader';
 
 export default function BlogDetailContainer() {
   const { id } = useParams<{ id: string }>();
@@ -14,7 +15,7 @@ export default function BlogDetailContainer() {
     navigate(-1);
   }
 
-  if (isLoading) return <p>Loading detail...</p>;
+  if (isLoading) return <Loader />;
   if (error) return <p>Something went wrong!</p>;
   if (!post) return <p>Post not found.</p>;
 

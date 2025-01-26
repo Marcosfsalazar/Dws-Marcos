@@ -23,6 +23,7 @@ import {
   ClearFuncParams,
   FilterComponentProps,
 } from '../../../../types/FilterComponent';
+import Loader from '../../atoms/Loader/Loader';
 
 const FilterPanel = ({ onApply }: FilterComponentProps) => {
   const { data: categories, isLoading: catLoading } = useCategories();
@@ -43,7 +44,7 @@ const FilterPanel = ({ onApply }: FilterComponentProps) => {
     ...selectedAuthors,
   ]);
 
-  if (catLoading || authLoading) return <p>Loading mock...</p>;
+  if (catLoading || authLoading) return <Loader />;
 
   function handleCategoryChange(id: string) {
     setSelectedCategories((prev: string[]) => {

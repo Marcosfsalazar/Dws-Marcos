@@ -8,6 +8,7 @@ import { Typography } from '../../atoms/Typography';
 import { TypographyVariants } from '../../../../types/Typography';
 import { useNavigate } from 'react-router-dom';
 import { LatestArticlesWrapper } from './LatestArticles.style';
+import Loader from '../../atoms/Loader/Loader';
 
 interface LatestArticlesProps {
   excludePostId?: string;
@@ -23,7 +24,7 @@ export default function LatestArticles({
   const { data: allPosts, isLoading, error } = usePosts();
   const navigate = useNavigate();
 
-  if (isLoading) return <p>Loading articles...</p>;
+  if (isLoading) return <Loader />;
   if (error) return <p>Error loading articles</p>;
   if (!allPosts) return null;
 

@@ -9,6 +9,7 @@ import { SORT_KEYS } from '../../constants/sortKeys';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import Loader from '../../components/ui/atoms/Loader/Loader';
 
 const BlogContainer = () => {
   const { data: posts, isLoading, error } = usePosts();
@@ -52,7 +53,7 @@ const BlogContainer = () => {
     setFilteredAuthors(filters.authors);
   }
 
-  if (isLoading) return <p>Loading Mock</p>;
+  if (isLoading) return <Loader />;
   if (error) return <p>error mock</p>;
 
   const cards = sortedPosts.map((post) => (
