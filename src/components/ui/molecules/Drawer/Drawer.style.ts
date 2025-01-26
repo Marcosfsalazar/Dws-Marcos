@@ -65,3 +65,9 @@ export const DrawerItemWrapper = styled.li`
     background-color: ${({ theme }) => theme.colors.neutral.extraLight};
   }
 `;
+
+export const CloseButtonWrapper = styled.button`
+  cursor: pointer;
+  border: none;
+  background: none;
+`;

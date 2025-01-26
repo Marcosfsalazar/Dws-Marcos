@@ -5,6 +5,7 @@ import {
   DrawerHeader,
   DrawerContent,
   DrawerItemWrapper,
+  CloseButtonWrapper,
 } from './Drawer.style';
 import { Button } from '../../atoms/Button';
 import { ButtonVariants } from '../../../../types/Button';
@@ -92,7 +93,7 @@ function DrawerContentComp({ children }: DrawerContentProps) {
 
 function CloseButton() {
   const { close } = useDrawerContext();
-  return <div onClick={close}>&larr;</div>;
+  return <CloseButtonWrapper onClick={close}>&larr;</CloseButtonWrapper>;
 }
 
 function DrawerItem({ children, onClick }: DrawerItemProps) {

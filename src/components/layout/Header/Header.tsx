@@ -13,6 +13,8 @@ import {
   SearchInput,
 } from './Header.style';
 import SearchIcon from '../../../assets/icons/searchIcon.svg';
+import { DesktopPanel } from '../../../styles/themes/screenSize';
+import { Button } from '../../ui/atoms/Button';
 
 const Header = () => {
   const { searchTerm, setSearchTerm } = useFilterContext();
@@ -28,12 +30,19 @@ const Header = () => {
           world services
         </Typography>
       </LogoWrapper>
-      <DesktopSearchInput
-        type="text"
-        placeholder="Search"
-        value={searchTerm}
-        onChange={handleSearchChange}
-      />
+      <DesktopPanel>
+        <SearchBox>
+          <DesktopSearchInput
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+          <Button variant={ButtonVariants.SEARCH}>
+            <img src={SearchIcon} alt="search icon" width={20} height={20} />
+          </Button>
+        </SearchBox>
+      </DesktopPanel>
       <MobileSearchWrapper>
         <Drawer>
           <Drawer.Button variant={ButtonVariants.SEARCH}>

@@ -19,9 +19,11 @@ export const DesktopSearchInput = styled.input`
     width: 320px;
     height: 36px;
     border-radius: 18px;
-    border: 1px solid ${({ theme }) => theme.colors.accent1.medium};
+    border: none;
+    background: none;
     padding: 0 12px;
     margin-left: auto;
+    outline: none;
   }
 `;
 
@@ -32,6 +34,9 @@ export const SearchBox = styled.div`
   border-radius: 24px;
   padding: 0 8px;
   background: ${({ theme }) => theme.colors.neutral.lightest};
+  @media (min-width: 1024px) {
+    padding: 4px 12px;
+  }
 `;
 
 export const SearchInput = styled.input`
