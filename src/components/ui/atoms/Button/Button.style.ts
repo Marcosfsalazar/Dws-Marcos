@@ -27,7 +27,7 @@ export const getButtonStyles = (
       },
     },
     [ButtonVariants.PRIMARY]: {
-      width: 280,
+      width: 260,
       height: 42,
       bgColor: theme.colors.secondary.medium,
       color: theme.colors.neutral.lightest,

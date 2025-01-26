@@ -13,7 +13,7 @@ import { Dropdown } from '../../molecules/Dropdown';
 import { SORT_KEYS } from '../../../../constants/sortKeys';
 import { useFilterContext } from '../../../../context/FilterContext';
 import { sortType } from '../../../../types/Sort';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import SelectorCard from '../../molecules/SelectorCard/SelectorCard';
 import {
   DesktopPanel,
@@ -36,6 +36,12 @@ const FilterPanel = ({ onApply }: FilterComponentProps) => {
     setSort,
     resetFilters,
   } = useFilterContext();
+  const [categoryGroup, setCategoryGroup] = useState<string[]>([
+    ...selectedCategories,
+  ]);
+  const [authorGroup, setAuthorGroup] = useState<string[]>([
+    ...selectedAuthors,
+  ]);
 
   if (catLoading || authLoading) return <p>Loading mock...</p>;
 
@@ -73,6 +79,13 @@ const FilterPanel = ({ onApply }: FilterComponentProps) => {
     onApply({
       categories: selectedCategories,
       authors: selectedAuthors,
+    });
+  }
+
+  function applyDesktopFilters() {
+    onApply({
+      categories: categoryGroup,
+      authors: authorGroup,
     });
   }
 
@@ -215,25 +228,44 @@ const FilterPanel = ({ onApply }: FilterComponentProps) => {
             {categories?.map((cat) => (
               <SelectorCard.Item
                 key={cat.id}
-                onClick={() => handleCategoryChange(cat.id)}
-                selected={selectedCategories.includes(cat.id)}
+                onClick={() =>
+                  setCategoryGroup((prev: string[]) => {
+                    const newValue = prev.includes(cat.id)
+                      ? prev.filter((c) => c !== cat.id)
+                      : [...prev, cat.id];
+                    return newValue;
+                  })
+                }
+                selected={categoryGroup.includes(cat.id)}
               >
                 {cat.name}
               </SelectorCard.Item>
             ))}
           </SelectorCard.Section>
-
           <SelectorCard.Section label="Author">
             {authors?.map((author) => (
               <SelectorCard.Item
                 key={author.id}
-                onClick={() => handleAuthorChange(author.id)}
-                selected={selectedAuthors.includes(author.id)}
+                onClick={() =>
+                  setAuthorGroup((prev) => {
+                    const newValue = prev.includes(author.id)
+                      ? prev.filter((c) => c !== author.id)
+                      : [...prev, author.id];
+                    return newValue;
+                  })
+                }
+                selected={authorGroup.includes(author.id)}
               >
                 {author.name}
               </SelectorCard.Item>
             ))}
           </SelectorCard.Section>
+          <SelectorCard.Button
+            onClick={applyDesktopFilters}
+            variant={ButtonVariants.PRIMARY}
+          >
+            Apply filters
+          </SelectorCard.Button>
         </SelectorCard>
       </DesktopPanel>
     </>

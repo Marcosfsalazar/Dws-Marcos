@@ -10,7 +10,6 @@ import { AccentIcon, BlogHeadContainer } from './BlogHead.styled';
 
 const BlogHead = ({ onApply }: FilterComponentProps) => {
   const { sort, categories, authors, setSort } = useFilterContext();
-  console.log(sort);
   function handleSortChange(sortType: sortType) {
     setSort(sortType);
     onApply({
