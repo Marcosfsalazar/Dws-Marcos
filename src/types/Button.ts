@@ -14,7 +14,9 @@ interface buttonHover {
 }
 
 export interface ButtonStyleProps {
-  width: number;
+  width: number | string;
+  minWidth: number;
+  maxWidth: number;
   height: number;
   bgColor?: string;
   color?: string;
@@ -32,6 +34,7 @@ export interface ButtonProps {
   color?: string;
   isActive?: boolean;
   as?: React.ElementType;
+  onClick?: () => void;
 }
 
 export type ButtonMapType = {
