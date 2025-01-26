@@ -15,16 +15,12 @@ import {
   DropdownButtonProps,
   DropdownMenuProps,
   DropdownItemProps,
+  IDropdownContext,
 } from '../../../../types/Dropdown';
 import { Button } from '../../atoms/Button';
 import { ButtonVariants } from '../../../../types/Button';
 import { useOnClickOutside } from '../../../../hooks/useOnClickOutside';
 
-interface IDropdownContext {
-  isOpen: boolean;
-  toggle: () => void;
-  close: () => void;
-}
 const DropdownContext = createContext<IDropdownContext | null>(null);
 
 function useDropdownContext() {

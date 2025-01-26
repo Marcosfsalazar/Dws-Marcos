@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import {
   CardRoot,
   CardImageWrapper,
@@ -13,36 +12,15 @@ import {
 } from './Card.style';
 import { Typography } from '../../atoms/Typography';
 import { TypographyVariants } from '../../../../types/Typography';
-
-interface CardProps {
-  children: ReactNode;
-}
-
-interface CardImageProps {
-  src: string;
-  alt?: string;
-}
-
-interface CardDateAuthorProps {
-  date: string;
-  author: string;
-}
-
-interface CardContentProps {
-  children: ReactNode;
-}
-
-interface CardTitleProps {
-  children: ReactNode;
-}
-
-interface CardDescriptionProps {
-  children: ReactNode;
-}
-
-interface CardCategoriesProps {
-  children: ReactNode;
-}
+import {
+  CardCategoriesProps,
+  CardContentProps,
+  CardDateAuthorProps,
+  CardDescriptionProps,
+  CardImageProps,
+  CardProps,
+  CardTitleProps,
+} from '../../../../types/Card';
 
 function Card({ children }: CardProps) {
   return <CardRoot>{children}</CardRoot>;

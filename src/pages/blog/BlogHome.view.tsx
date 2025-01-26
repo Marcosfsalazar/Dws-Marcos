@@ -1,15 +1,7 @@
 import { CardsList } from '../../components/ui/organisms/CardsList';
-import { ReactNode } from 'react';
 import FilterPanel from '../../components/ui/organisms/FilterPanel/FilterPanel';
 import { Wrapper } from './BlogHome.style';
-
-interface BlogViewProps {
-  data: ReactNode[];
-  onApplyFilters: (filters: {
-    categories: string[];
-    authors: string[];
-  }) => void;
-}
+import { BlogViewProps } from '../../types/BlogHome';
 
 const BlogView = ({ data, onApplyFilters }: BlogViewProps): JSX.Element => {
   return (

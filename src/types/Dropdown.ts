@@ -18,3 +18,9 @@ export interface DropdownItemProps {
   children: ReactNode;
   onClick?: () => void;
 }
+
+export interface IDropdownContext {
+  isOpen: boolean;
+  toggle: () => void;
+  close: () => void;
+}

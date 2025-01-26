@@ -1,22 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import { sortType } from '../types/Sort';
 import { SORT_KEYS } from '../constants/sortKeys';
-
-interface FilterState {
-  categories: string[];
-  authors: string[];
-  sort: sortType;
-  setCategories: React.Dispatch<React.SetStateAction<string[]>>;
-  setAuthors: React.Dispatch<React.SetStateAction<string[]>>;
-  setSort: React.Dispatch<React.SetStateAction<sortType>>;
-  resetFilters: ({
-    category,
-    author,
-  }: {
-    category?: boolean;
-    author?: boolean;
-  }) => void;
-}
+import { FilterState } from '../types/Filter';
 
 const FilterContext = createContext<FilterState | undefined>(undefined);
 
