@@ -10,6 +10,7 @@ import {
 import { Dropdown } from '../../molecules/Dropdown';
 import { SORT_KEYS } from '../../../../constants/sortKeys';
 import { useFilterContext } from '../../../../context/FilterContext';
+import { sortType } from '../../../../types/Sort';
 
 interface FilterPanelProps {
   onApply: (filters: { categories: string[]; authors: string[] }) => void;
@@ -54,6 +55,15 @@ const FilterPanel = ({ onApply }: FilterPanelProps) => {
         authors: newValue,
       });
       return newValue;
+    });
+  }
+
+  function handleSortChange(sortType: sortType) {
+    setSort(sortType);
+
+    onApply({
+      categories: selectedCategories,
+      authors: selectedAuthors,
     });
   }
 
@@ -136,13 +146,13 @@ const FilterPanel = ({ onApply }: FilterPanelProps) => {
             <Dropdown.Menu>
               <Dropdown.Item
                 key={SORT_KEYS.NEW}
-                onClick={() => console.log(`Selected: ${SORT_KEYS.NEW}`)}
+                onClick={() => handleSortChange({ type: SORT_KEYS.NEW })}
               >
                 {SORT_KEYS.NEW}
               </Dropdown.Item>
               <Dropdown.Item
                 key={SORT_KEYS.OLD}
-                onClick={() => console.log(`Selected: ${SORT_KEYS.OLD}`)}
+                onClick={() => handleSortChange({ type: SORT_KEYS.OLD })}
               >
                 {SORT_KEYS.OLD}
               </Dropdown.Item>

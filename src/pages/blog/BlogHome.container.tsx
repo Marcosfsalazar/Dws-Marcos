@@ -5,12 +5,14 @@ import { useFilterContext } from '../../context/FilterContext';
 import { Chip } from '../../components/ui/atoms/Chip';
 import { Typography } from '../../components/ui/atoms/Typography';
 import { TypographyVariants } from '../../types/Typography';
+import { SORT_KEYS } from '../../constants/sortKeys';
 
 const BlogContainer = () => {
   const { data: posts, isLoading, error } = usePosts();
   const {
     categories: filteredCategories,
     authors: filteredAuthors,
+    sort,
     setCategories: setFilteredCategories,
     setAuthors: setFilteredAuthors,
   } = useFilterContext();
@@ -25,6 +27,13 @@ const BlogContainer = () => {
     return matchCat && matchAuthor;
   });
 
+  const sortedPosts = [...filteredPosts].sort((a, b) => {
+    if (sort.type === SORT_KEYS.NEW) {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    }
+    return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+  });
+
   function handleApply(filters: { categories: string[]; authors: string[] }) {
     setFilteredCategories(filters.categories);
     setFilteredAuthors(filters.authors);
@@ -33,7 +42,7 @@ const BlogContainer = () => {
   if (isLoading) return <p>Loading Mock</p>;
   if (error) return <p>error mock</p>;
 
-  const cards = filteredPosts.map((post) => (
+  const cards = sortedPosts.map((post) => (
     <Card key={post.id}>
       <Card.Image src={post.thumbnail_url} alt={post.title} />
       <Card.Content>
