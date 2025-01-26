@@ -7,8 +7,8 @@ export const ListGrid = styled.ul`
   gap: 16px;
   margin: 16px;
   padding: 0;
+  padding-bottom: 16px;
   list-style: none;
-  height: 100vh;
 
   @media (min-width: 680px) {
     grid-template-columns: repeat(2, 1fr);
