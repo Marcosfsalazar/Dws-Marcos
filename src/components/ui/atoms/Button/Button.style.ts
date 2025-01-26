@@ -12,7 +12,9 @@ export const getButtonStyles = (
 ) => {
   const buttonMap: ButtonMapType = {
     [ButtonVariants.DROPDOWN]: {
-      width: 110,
+      minWidth: 110,
+      width: 'fit-content',
+      maxWidth: 220,
       height: 32,
       bgColor: theme.colors.neutral.lightest,
       color: theme.colors.secondary.medium,
@@ -85,6 +87,8 @@ export const StyledButton = styled.button<ButtonProps>`
       bgColor,
       color,
       width,
+      minWidth,
+      maxWidth,
       height,
       fontWeight,
       fontSize,
@@ -94,7 +98,9 @@ export const StyledButton = styled.button<ButtonProps>`
       hover,
     } = getButtonStyles(theme, variant);
     return css`
-      width: ${width}px;
+      width: ${typeof width === 'number' ? `${width}px` : width};
+      min-width: ${minWidth ? minWidth : width};
+      max-width: ${maxWidth ? maxWidth : width};
       height: ${height}px;
       background-color: ${bgColor};
       color: ${color};
