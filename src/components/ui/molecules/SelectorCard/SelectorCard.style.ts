@@ -35,6 +35,9 @@ export const DesktopItemWrapper = styled.div`
 export const CustomSelectButton = styled(StyledButton)<{
   selected?: boolean;
 }>`
+  display: flex;
+  justify-content: start;
+  padding-left: 4px;
   ${({ selected }) =>
     selected &&
     css`

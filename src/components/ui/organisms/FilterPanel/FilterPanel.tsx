@@ -6,10 +6,8 @@ import CloseIcon from '../../../../assets/icons/closeIcon.svg';
 import {
   AccentIcon,
   CloseButton,
-  DesktopPanel,
   FilterPanelContainer,
   FiltersContainer,
-  MobilePanel,
 } from './FilterPanel.style';
 import { Dropdown } from '../../molecules/Dropdown';
 import { SORT_KEYS } from '../../../../constants/sortKeys';
@@ -17,6 +15,10 @@ import { useFilterContext } from '../../../../context/FilterContext';
 import { sortType } from '../../../../types/Sort';
 import { ReactNode } from 'react';
 import SelectorCard from '../../molecules/SelectorCard/SelectorCard';
+import {
+  DesktopPanel,
+  MobilePanel,
+} from '../../../../styles/themes/screenSize';
 
 interface FilterPanelProps {
   onApply: (filters: { categories: string[]; authors: string[] }) => void;
