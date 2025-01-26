@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import Loader from '../../components/ui/atoms/Loader/Loader';
+import { ErrorMessage } from '../../components/ui/atoms/ErrorMessage';
 
 const BlogContainer = () => {
   const { data: posts, isLoading, error } = usePosts();
@@ -54,7 +55,12 @@ const BlogContainer = () => {
   }
 
   if (isLoading) return <Loader />;
-  if (error) return <p>error mock</p>;
+  if (error)
+    return (
+      <ErrorMessage
+        message={`Sorry we can't load this now, please reload the page and try again!`}
+      />
+    );
 
   const cards = sortedPosts.map((post) => (
     <Card key={post.id} onClick={() => handleCardClick(post.id)}>

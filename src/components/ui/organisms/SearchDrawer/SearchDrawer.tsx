@@ -10,6 +10,8 @@ import { ButtonVariants } from '../../../../types/Button';
 import SearchIcon from '../../../../assets/icons/searchIcon.svg';
 import { Typography } from '../../atoms/Typography';
 import { TypographyVariants } from '../../../../types/Typography';
+import Loader from '../../atoms/Loader/Loader';
+import { ErrorMessage } from '../../atoms/ErrorMessage';
 
 const SearchDrawer = () => {
   const {
@@ -44,8 +46,10 @@ const SearchDrawer = () => {
       </Drawer.Header>
 
       <Drawer.Content>
-        {isLoading && <div>Loading...</div>}
-        {error && <div>Error searching</div>}
+        {isLoading && <Loader />}
+        {error && (
+          <ErrorMessage message="error while searching, please try again!" />
+        )}
 
         <Drawer.List>
           {results.map((post) => (

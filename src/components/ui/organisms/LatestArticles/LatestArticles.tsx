@@ -9,6 +9,7 @@ import { TypographyVariants } from '../../../../types/Typography';
 import { useNavigate } from 'react-router-dom';
 import { LatestArticlesWrapper } from './LatestArticles.style';
 import Loader from '../../atoms/Loader/Loader';
+import { ErrorMessage } from '../../atoms/ErrorMessage';
 
 interface LatestArticlesProps {
   excludePostId?: string;
@@ -25,7 +26,7 @@ export default function LatestArticles({
   const navigate = useNavigate();
 
   if (isLoading) return <Loader />;
-  if (error) return <p>Error loading articles</p>;
+  if (error) return <ErrorMessage message="Error loading latest posts!" />;
   if (!allPosts) return null;
 
   let filtered = allPosts;
