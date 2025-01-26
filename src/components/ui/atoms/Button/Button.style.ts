@@ -101,6 +101,7 @@ export const StyledButton = styled.button<ButtonProps>`
       width: ${typeof width === 'number' ? `${width}px` : width};
       min-width: ${minWidth ? minWidth : width};
       max-width: ${maxWidth ? maxWidth : width};
+      overflow: hidden;
       height: ${height}px;
       background-color: ${bgColor};
       color: ${color};

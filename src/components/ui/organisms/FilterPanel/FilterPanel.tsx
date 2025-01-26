@@ -2,8 +2,10 @@ import { useAuthors } from '../../../../hooks/useAuthors';
 import { useCategories } from '../../../../hooks/useCategories';
 import { ButtonVariants } from '../../../../types/Button';
 import ArrowDown from '../../../../assets/icons/arrowDown.svg';
+import CloseIcon from '../../../../assets/icons/closeIcon.svg';
 import {
   AccentIcon,
+  CloseButton,
   FilterPanelContainer,
   FiltersContainer,
 } from './FilterPanel.style';
@@ -11,9 +13,15 @@ import { Dropdown } from '../../molecules/Dropdown';
 import { SORT_KEYS } from '../../../../constants/sortKeys';
 import { useFilterContext } from '../../../../context/FilterContext';
 import { sortType } from '../../../../types/Sort';
+import { ReactNode } from 'react';
 
 interface FilterPanelProps {
   onApply: (filters: { categories: string[]; authors: string[] }) => void;
+}
+
+interface ClearFuncParams {
+  category?: boolean;
+  author?: boolean;
 }
 
 const FilterPanel = ({ onApply }: FilterPanelProps) => {
@@ -26,6 +34,7 @@ const FilterPanel = ({ onApply }: FilterPanelProps) => {
     setCategories: setSelectedCategories,
     setAuthors: setSelectedAuthors,
     setSort,
+    resetFilters,
   } = useFilterContext();
 
   if (catLoading || authLoading) return <p>Loading mock...</p>;
@@ -80,7 +89,33 @@ const FilterPanel = ({ onApply }: FilterPanelProps) => {
       .filter((item) => selectedIds.includes(item.id))
       .map((item) => item.name);
 
+    if (selectedNames.length > 3) {
+      return `${selectedNames.slice(0, 3).join(', ')}...`;
+    }
+
     return selectedNames.join(', ');
+  }
+
+  function handleIcon(
+    hasItem: boolean,
+    clearFunc: ({ category, author }: ClearFuncParams) => void,
+    clearFuncParam: ClearFuncParams,
+    icon: string,
+    altText: string,
+  ): ReactNode {
+    if (hasItem) {
+      return (
+        <CloseButton onClick={() => clearFunc(clearFuncParam)}>
+          <img
+            src={CloseIcon}
+            alt={`clean filters ${altText}`}
+            width={10}
+            height={10}
+          />
+        </CloseButton>
+      );
+    }
+    return <img src={icon} alt={altText} width={10} height={10} />;
   }
 
   return (
@@ -92,12 +127,15 @@ const FilterPanel = ({ onApply }: FilterPanelProps) => {
               <>
                 {handleName('Category', selectedCategories, categories || [])}
               </>
-              <img
-                src={ArrowDown}
-                alt="categories filter button"
-                width={10}
-                height={10}
-              />
+              {handleIcon(
+                !!(selectedCategories.length > 0),
+                resetFilters,
+                {
+                  category: true,
+                },
+                ArrowDown,
+                'category button',
+              )}
             </Dropdown.Button>
 
             <Dropdown.Menu>
@@ -116,12 +154,15 @@ const FilterPanel = ({ onApply }: FilterPanelProps) => {
           <Dropdown>
             <Dropdown.Button variant={ButtonVariants.DROPDOWN}>
               <>{handleName('Author', selectedAuthors, authors || [])}</>
-              <img
-                src={ArrowDown}
-                alt="authors filter button"
-                width={10}
-                height={10}
-              />
+              {handleIcon(
+                !!(selectedAuthors.length > 0),
+                resetFilters,
+                {
+                  author: true,
+                },
+                ArrowDown,
+                'author button',
+              )}
             </Dropdown.Button>
 
             <Dropdown.Menu>
