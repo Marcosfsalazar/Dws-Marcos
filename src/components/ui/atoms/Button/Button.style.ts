@@ -40,7 +40,7 @@ export const getButtonStyles = (
     },
     [ButtonVariants.SECONDARY]: {
       width: 100,
-      height: 50,
+      height: 42,
       padding: '12px 16px',
       color: theme.colors.secondary.medium,
       border: `1px solid ${theme.colors.secondary.medium}`,

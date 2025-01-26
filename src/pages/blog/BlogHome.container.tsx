@@ -6,6 +6,7 @@ import { Chip } from '../../components/ui/atoms/Chip';
 import { Typography } from '../../components/ui/atoms/Typography';
 import { TypographyVariants } from '../../types/Typography';
 import { SORT_KEYS } from '../../constants/sortKeys';
+import { useNavigate } from 'react-router-dom';
 
 const BlogContainer = () => {
   const { data: posts, isLoading, error } = usePosts();
@@ -16,6 +17,11 @@ const BlogContainer = () => {
     setCategories: setFilteredCategories,
     setAuthors: setFilteredAuthors,
   } = useFilterContext();
+  const navigate = useNavigate();
+
+  function handleCardClick(id: string) {
+    navigate(`/post/${id}`);
+  }
 
   const filteredPosts = (posts ?? []).filter((post) => {
     const matchCat =
@@ -43,7 +49,7 @@ const BlogContainer = () => {
   if (error) return <p>error mock</p>;
 
   const cards = sortedPosts.map((post) => (
-    <Card key={post.id}>
+    <Card key={post.id} onClick={() => handleCardClick(post.id)}>
       <Card.Image src={post.thumbnail_url} alt={post.title} />
       <Card.Content>
         <Card.DateAuthor

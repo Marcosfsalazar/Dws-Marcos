@@ -22,8 +22,8 @@ import {
   CardTitleProps,
 } from '../../../../types/Card';
 
-function Card({ children }: CardProps) {
-  return <CardRoot>{children}</CardRoot>;
+function Card({ children, onClick }: CardProps) {
+  return <CardRoot onClick={onClick}>{children}</CardRoot>;
 }
 
 function CardImage({ src, alt }: CardImageProps) {
