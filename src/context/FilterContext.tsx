@@ -9,6 +9,7 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
   const [categories, setCategories] = useState<string[]>([]);
   const [authors, setAuthors] = useState<string[]>([]);
   const [sort, setSort] = useState<sortType>({ type: SORT_KEYS.NEW });
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   function resetFilters({
     category,
@@ -39,6 +40,8 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
         setAuthors,
         resetFilters,
         setSort,
+        searchTerm,
+        setSearchTerm,
       }}
     >
       {children}

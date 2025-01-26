@@ -16,6 +16,7 @@ export interface DrawerButtonProps {
   children: ReactNode;
   variant?: ButtonVariants;
   onClick?: () => void;
+  isOpen?: () => boolean;
 }
 
 export interface DrawerHeaderProps {

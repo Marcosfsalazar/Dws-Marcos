@@ -16,6 +16,7 @@ const BlogContainer = () => {
     categories: filteredCategories,
     authors: filteredAuthors,
     sort,
+    searchTerm,
     setCategories: setFilteredCategories,
     setAuthors: setFilteredAuthors,
   } = useFilterContext();
@@ -31,8 +32,12 @@ const BlogContainer = () => {
       post.categories.some((c) => filteredCategories.includes(c.id));
     const matchAuthor =
       filteredAuthors.length === 0 || filteredAuthors.includes(post.authorId);
+    const matchSearch =
+      !searchTerm ||
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.content.toLowerCase().includes(searchTerm.toLowerCase());
 
-    return matchCat && matchAuthor;
+    return matchCat && matchAuthor && matchSearch;
   });
 
   const sortedPosts = [...filteredPosts].sort((a, b) => {

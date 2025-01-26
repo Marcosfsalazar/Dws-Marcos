@@ -21,13 +21,14 @@ export const DrawerWrapper = styled.div`
 export const DrawerHeader = styled.header`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   padding: 16px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.neutral.extraLight};
 
   input {
     flex: 1;
-    border: 1px solid ${({ theme }) => theme.colors.accent1.medium};
+    width: 100%;
     padding: 8px 12px;
     border-radius: 24px;
     outline: none;

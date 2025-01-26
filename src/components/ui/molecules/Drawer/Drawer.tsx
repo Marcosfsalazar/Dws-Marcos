@@ -4,7 +4,6 @@ import {
   DrawerWrapper,
   DrawerHeader,
   DrawerContent,
-  CloseButton,
   DrawerItemWrapper,
 } from './Drawer.style';
 import { Button } from '../../atoms/Button';
@@ -67,6 +66,7 @@ function DrawerButton({
   children,
   onClick,
   variant = ButtonVariants.DROPDOWN,
+  isOpen,
 }: DrawerButtonProps) {
   const { toggle } = useDrawerContext();
   const handleClick = () => {
@@ -74,24 +74,25 @@ function DrawerButton({
     toggle();
   };
   return (
-    <Button variant={variant} onClick={handleClick}>
-      {children}
-    </Button>
+    !isOpen && (
+      <Button variant={variant} onClick={handleClick}>
+        {children}
+      </Button>
+    )
   );
 }
 
 function DrawerHeaderComp({ children }: DrawerHeaderProps) {
-  const { close } = useDrawerContext();
-  return (
-    <DrawerHeader>
-      <CloseButton onClick={close}>&larr;</CloseButton>
-      {children}
-    </DrawerHeader>
-  );
+  return <DrawerHeader>{children}</DrawerHeader>;
 }
 
 function DrawerContentComp({ children }: DrawerContentProps) {
   return <DrawerContent>{children}</DrawerContent>;
+}
+
+function CloseButton() {
+  const { close } = useDrawerContext();
+  return <div onClick={close}>&larr;</div>;
 }
 
 function DrawerItem({ children, onClick }: DrawerItemProps) {
@@ -109,5 +110,6 @@ Drawer.Button = DrawerButton;
 Drawer.Header = DrawerHeaderComp;
 Drawer.Content = DrawerContentComp;
 Drawer.Item = DrawerItem;
+Drawer.CloseButton = CloseButton;
 
 export default Drawer;
