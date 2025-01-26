@@ -56,11 +56,20 @@ export const DrawerContent = styled.div`
   }
 `;
 
+export const DrawerListContainer = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  > ul {
+    list-style-type: none;
+  }
+`;
+
 export const DrawerItemWrapper = styled.li`
   cursor: pointer;
   padding: 8px 12px;
   width: 100%;
-  border: 1px solid red;
   &:hover {
     background-color: ${({ theme }) => theme.colors.neutral.extraLight};
   }
