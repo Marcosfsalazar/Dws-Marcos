@@ -53,7 +53,7 @@ export const getButtonStyles = (
     },
     [ButtonVariants.FILTER]: {
       borderRadius: 8,
-      width: 314,
+      width: '100%',
       height: 42,
       fontSize: theme.typography.fontSizes.bodySmall,
       color: theme.colors.neutral.darkest,

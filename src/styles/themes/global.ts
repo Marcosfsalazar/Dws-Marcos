@@ -16,7 +16,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: ${({ theme }) => theme.typography.fontFamily};
     font-weight:${({ theme }) => theme.typography.fontWeights.regular};
-    background-color: ${({ theme }) => theme.colors.neutral.lightest};
+    background: rgb(121,9,98);
+    background: linear-gradient(90deg, rgba(121,9,98,0.085) 0%, rgba(254,254,254,0.5) 45%, rgba(168,199,205,0.3) 80%);
     color: ${({ theme }) => theme.colors.primary.dark};
     min-height: 100vh;
     margin: 0 auto;

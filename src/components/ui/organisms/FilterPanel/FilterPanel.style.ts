@@ -30,3 +30,20 @@ export const CloseButton = styled.div`
   color: none;
   cursor: pointer;
 `;
+
+export const DesktopPanel = styled.aside`
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: block;
+    width: 300px;
+  }
+`;
+
+export const MobilePanel = styled.div`
+  display: block;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+`;

@@ -6,14 +6,17 @@ import CloseIcon from '../../../../assets/icons/closeIcon.svg';
 import {
   AccentIcon,
   CloseButton,
+  DesktopPanel,
   FilterPanelContainer,
   FiltersContainer,
+  MobilePanel,
 } from './FilterPanel.style';
 import { Dropdown } from '../../molecules/Dropdown';
 import { SORT_KEYS } from '../../../../constants/sortKeys';
 import { useFilterContext } from '../../../../context/FilterContext';
 import { sortType } from '../../../../types/Sort';
 import { ReactNode } from 'react';
+import SelectorCard from '../../molecules/SelectorCard/SelectorCard';
 
 interface FilterPanelProps {
   onApply: (filters: { categories: string[]; authors: string[] }) => void;
@@ -119,89 +122,124 @@ const FilterPanel = ({ onApply }: FilterPanelProps) => {
   }
 
   return (
-    <FilterPanelContainer>
-      <FiltersContainer>
-        <section>
-          <Dropdown>
-            <Dropdown.Button variant={ButtonVariants.DROPDOWN}>
-              <>
-                {handleName('Category', selectedCategories, categories || [])}
-              </>
-              {handleIcon(
-                !!(selectedCategories.length > 0),
-                resetFilters,
-                {
-                  category: true,
-                },
-                ArrowDown,
-                'category button',
-              )}
-            </Dropdown.Button>
+    <>
+      <MobilePanel>
+        <FilterPanelContainer>
+          <FiltersContainer>
+            <section>
+              <Dropdown>
+                <Dropdown.Button variant={ButtonVariants.DROPDOWN}>
+                  <>
+                    {handleName(
+                      'Category',
+                      selectedCategories,
+                      categories || [],
+                    )}
+                  </>
+                  {handleIcon(
+                    !!(selectedCategories.length > 0),
+                    resetFilters,
+                    {
+                      category: true,
+                    },
+                    ArrowDown,
+                    'category button',
+                  )}
+                </Dropdown.Button>
 
-            <Dropdown.Menu>
-              {categories?.map((cat) => (
-                <Dropdown.Item
-                  key={cat.id}
-                  onClick={() => handleCategoryChange(cat.id)}
-                >
-                  {cat.name}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </section>
-        <section>
-          <Dropdown>
-            <Dropdown.Button variant={ButtonVariants.DROPDOWN}>
-              <>{handleName('Author', selectedAuthors, authors || [])}</>
-              {handleIcon(
-                !!(selectedAuthors.length > 0),
-                resetFilters,
-                {
-                  author: true,
-                },
-                ArrowDown,
-                'author button',
-              )}
-            </Dropdown.Button>
+                <Dropdown.Menu>
+                  {categories?.map((cat) => (
+                    <Dropdown.Item
+                      key={cat.id}
+                      onClick={() => handleCategoryChange(cat.id)}
+                    >
+                      {cat.name}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+            </section>
+            <section>
+              <Dropdown>
+                <Dropdown.Button variant={ButtonVariants.DROPDOWN}>
+                  <>{handleName('Author', selectedAuthors, authors || [])}</>
+                  {handleIcon(
+                    !!(selectedAuthors.length > 0),
+                    resetFilters,
+                    {
+                      author: true,
+                    },
+                    ArrowDown,
+                    'author button',
+                  )}
+                </Dropdown.Button>
 
-            <Dropdown.Menu>
-              {authors?.map((author) => (
-                <Dropdown.Item
-                  key={author.id}
-                  onClick={() => handleAuthorChange(author.id)}
-                >
-                  {author.name}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </section>
-        <section>
-          <Dropdown>
-            <Dropdown.Button variant={ButtonVariants.SORT}>
-              <div>{sort.type}</div>
-              <AccentIcon>&#8645;</AccentIcon>
-            </Dropdown.Button>
+                <Dropdown.Menu>
+                  {authors?.map((author) => (
+                    <Dropdown.Item
+                      key={author.id}
+                      onClick={() => handleAuthorChange(author.id)}
+                    >
+                      {author.name}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+            </section>
+            <section>
+              <Dropdown>
+                <Dropdown.Button variant={ButtonVariants.SORT}>
+                  <div>{sort.type}</div>
+                  <AccentIcon>&#8645;</AccentIcon>
+                </Dropdown.Button>
 
-            <Dropdown.Menu>
-              <Dropdown.Item
-                key={SORT_KEYS.NEW}
-                onClick={() => handleSortChange({ type: SORT_KEYS.NEW })}
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    key={SORT_KEYS.NEW}
+                    onClick={() => handleSortChange({ type: SORT_KEYS.NEW })}
+                  >
+                    {SORT_KEYS.NEW}
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    key={SORT_KEYS.OLD}
+                    onClick={() => handleSortChange({ type: SORT_KEYS.OLD })}
+                  >
+                    {SORT_KEYS.OLD}
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </section>
+          </FiltersContainer>
+        </FilterPanelContainer>
+      </MobilePanel>
+      <DesktopPanel>
+        <SelectorCard>
+          <SelectorCard.Section label="Category">
+            {categories?.map((cat) => (
+              <SelectorCard.Item
+                key={cat.id}
+                onClick={() => handleCategoryChange(cat.id)}
+                selected={selectedCategories.includes(cat.id)}
               >
-                {SORT_KEYS.NEW}
-              </Dropdown.Item>
-              <Dropdown.Item
-                key={SORT_KEYS.OLD}
-                onClick={() => handleSortChange({ type: SORT_KEYS.OLD })}
+                {cat.name}
+              </SelectorCard.Item>
+            ))}
+          </SelectorCard.Section>
+
+          <SelectorCard.Section label="Author">
+            {authors?.map((author) => (
+              <SelectorCard.Item
+                key={author.id}
+                onClick={() => handleAuthorChange(author.id)}
+                selected={selectedAuthors.includes(author.id)}
               >
-                {SORT_KEYS.OLD}
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </section>
-      </FiltersContainer>
-    </FilterPanelContainer>
+                {author.name}
+              </SelectorCard.Item>
+            ))}
+          </SelectorCard.Section>
+        </SelectorCard>
+      </DesktopPanel>
+    </>
   );
 };
 

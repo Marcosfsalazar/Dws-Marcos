@@ -13,8 +13,11 @@ export const ListGrid = styled.ul`
   @media (min-width: 680px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media (min-width: 1279px) {
+  @media (min-width: 1366px) {
     grid-template-columns: repeat(3, 1fr);
+  }
+  @media (min-width: 2560px) {
+    grid-template-columns: repeat(6, 1fr);
   }
 `;
 
