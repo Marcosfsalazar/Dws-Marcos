@@ -7,6 +7,8 @@ import { Typography } from '../../components/ui/atoms/Typography';
 import { TypographyVariants } from '../../types/Typography';
 import { SORT_KEYS } from '../../constants/sortKeys';
 import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 const BlogContainer = () => {
   const { data: posts, isLoading, error } = usePosts();
@@ -53,7 +55,7 @@ const BlogContainer = () => {
       <Card.Image src={post.thumbnail_url} alt={post.title} />
       <Card.Content>
         <Card.DateAuthor
-          date={new Date(post.createdAt).toLocaleDateString()}
+          date={format(post.createdAt, 'MMM dd, yyyy', { locale: ptBR })}
           author={post.author.name}
         />
         <Card.Title>{post.title}</Card.Title>
