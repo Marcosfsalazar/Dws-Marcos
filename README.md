@@ -12,7 +12,7 @@ Welcome to the **DWS Blog** project! This README covers the basics of how to ins
 1. **Clone** the repository:
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/Marcosfsalazar/Dws-Marcos.git
 ```
 
 2. **Go into** the project directory:
